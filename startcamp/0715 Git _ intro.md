@@ -66,3 +66,6 @@ git remote add origin {https://github.com/wallaby150/TIL.git}
     \# 원격저장소를 추가할 건데, origin이라 부를 원격저장소의 위치는 여기야
 git push -u origin master
     \# 내가 지금까지 커밋한 것들 푸쉬할 건데, 내가 오리진이라고 이름지은 원격저장소에 마스터가 작업한 내용들을 푸쉬할 거야.
+
+git clone {}
+하면 사용 가능. 폴더명 리포지토리 이름으로 되는데 그냥 바꾸면 됨.
