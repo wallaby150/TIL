@@ -16,3 +16,7 @@ player = 4
 def bot():
     for _ in range(3):
         print("겁나 반갑습니다.")
+
+
+
+#0715 만약 수정사항이 생긴다면?
