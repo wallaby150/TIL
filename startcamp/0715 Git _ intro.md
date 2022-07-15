@@ -69,3 +69,6 @@ git push -u origin master
 
 git clone {}
 하면 사용 가능. 폴더명 리포지토리 이름으로 되는데 그냥 바꾸면 됨.
+
+$ git pull origin master
+하면 바뀐 내용이 있을 것이다.
