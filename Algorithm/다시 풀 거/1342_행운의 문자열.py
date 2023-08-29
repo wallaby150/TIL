@@ -1,6 +1,7 @@
 import sys
 input = lambda : sys.stdin.readline().rstrip()
 
+# 다음에는 DFS로 풀어보기
 
 text = input()
 ans = 0
