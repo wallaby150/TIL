@@ -1,31 +1,22 @@
 import sys
 input = lambda : sys.stdin.readline().rstrip()
 
+N = int(input())
+M = int(input())
+settable_list = list(map(int, input().split()))
 
-text = input()
-ans = 0
-a = list(text)
+road = [0] * N
+ans = 1000000
 
-def solve(i, now, rest):
-    global ans
+for i in range(1, 100001):
+    for light in settable_list:
+        if 0 in road[max(0, light-i):light+i]:
+            for j in range(max(0, light-i), min(light+i, N)):
+                road[j] = 1
 
-    if rest == []:
-        ans += 1
-        return
+    if 0 not in road:
+        ans = i
+        break
 
-    # 만약 처음이라면
-    if i == 0:
-        for char in set(rest):
-            temp = rest[:]
-            temp.remove(char)
-            solve(1, char, temp)
-    else:
-        temp = set(rest)
-        temp.discard(now[-1])
-        for char in temp:
-            t = rest[:]
-            t.remove(char)
-            solve(i+1, now+char, t)
 
-solve(0, '', a)
-print(ans)
+print(i)
