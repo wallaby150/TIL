@@ -1,31 +1,19 @@
 import sys
 input = lambda : sys.stdin.readline().rstrip()
 
-N = int(input())
-needs = [int(input()) for _ in range(N)]
-needs_set = set(needs)
+N, K = map(int, input().split())
+ground = [0] * 1000001
+last = 0
+
+for _ in range(N):
+    i, g = map(int, input().split())
+    ground[g] = i
+    last = max(last, g)
+
 ans = 0
 
-while needs_set:
-    x = needs_set.pop()
-    now = ''
-    count = 0
-
-    for need in needs:
-        if need == x:
-            continue
-
-        elif now == '':
-            now = need
-            count += 1
-
-        elif now == need:
-            count += 1
-
-        else:
-            ans = max(count, ans)
-            now = need
-            count = 1
-    ans = max(count, ans)
+for i in range(last - K + 1):
+    a = ground[max(i-K, 0):i+K+1]
+    ans = max(ans, sum(ground[max(i-K, 0):i+K+1]))
 
 print(ans)
