@@ -1,34 +1,31 @@
-# ✨ 입력
 import sys
 
-input = sys.stdin.readline
-N = int(input())
-board = [list(map(int, input().split())) for _ in range(N)]
-visited = [False for _ in range(N)]
-INF = 2147000000
-res = INF
+input = lambda: sys.stdin.readline().rstrip()
+
+L = int(input())
+S = sorted(list(map(int, input().split())))
+n = int(input())
 
 
-# ✨ DFS
-def DFS(L, idx):
-    global res
-    if L == N // 2:
-        A = 0
-        B = 0
-        for i in range(N):
-            for j in range(N):
-                if visited[i] and visited[j]:
-                    A += board[i][j]
-                elif not visited[i] and not visited[j]:
-                    B += board[i][j]
-        res = min(res, abs(A - B))
-        return
-    for i in range(idx, N):
-        if not visited[i]:
-            visited[i] = True
-            DFS(L + 1, i + 1)
-            visited[i] = False
+def solve():
+    if n in S:
+        return 0
+
+    low = high = 0
+
+    for i in range(L):
+        if S[i] < n:
+            low = S[i]
+        elif S[i] > n:
+            high = S[i]
+            break
+
+    count = 0
+    for j in range(low + 1, n):
+        for k in range(n + 1, high):
+            count += 1
+
+    return count
 
 
-DFS(0, 0)
-print(res)
+print(solve())
