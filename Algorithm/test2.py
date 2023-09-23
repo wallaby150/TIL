@@ -1,31 +1,16 @@
 import sys
+input = lambda : sys.stdin.readline().rstrip()
 
-input = lambda: sys.stdin.readline().rstrip()
+N, K = map(int, input().split())
+nums = list(i for i in range(1, N + 1))
+ans = []
+num = 0
 
-L = int(input())
-S = sorted(list(map(int, input().split())))
-n = int(input())
+for j in range(N):
+    num += K - 1
+    if num >= len(nums):
+        num %= len(nums)
 
+    ans.append(nums.pop(num))
 
-def solve():
-    if n in S:
-        return 0
-
-    low = high = 0
-
-    for i in range(L):
-        if S[i] < n:
-            low = S[i]
-        elif S[i] > n:
-            high = S[i]
-            break
-
-    count = 0
-    for j in range(low + 1, n):
-        for k in range(n + 1, high):
-            count += 1
-
-    return count
-
-
-print(solve())
+print("<", ", ".join(map(str, ans)), ">", sep='')
