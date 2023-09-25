@@ -5,8 +5,8 @@ S = input()
 ans = set()
 L = len(S)
 
-for i in range(1, L+1):
-    for start in range(L):
-        ans.add(S[start:start+i])
+for i in range(L):
+    for j in range(i, L):
+        ans.add(S[i:j+1])
 
 print(len(ans))
