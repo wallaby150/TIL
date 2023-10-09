@@ -10,4 +10,5 @@ for _ in range(K):
     for i in range(N):
         tmp[D[i]-1] = ans[i]
     ans = tmp
+
 print(*ans)
