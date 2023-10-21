@@ -1,6 +1,5 @@
 import sys
 input = lambda : sys.stdin.readline().rstrip()
-from pprint import pprint
 
 # 세로, 가로
 R, S = map(int, input().split())
@@ -31,10 +30,13 @@ for x in range(S):
 
     min_height = min(min_height, high_ground - low_star - 1)
 
-for sy, sx in sorted(star, reverse=True):
-    pic[sy][sx] = '.'
-    pic[sy+min_height][sx] = 'X'
+    if min_height == 0:
+        break
 
+if min_height != 0:
+    for sy, sx in sorted(star, reverse=True):
+        pic[sy][sx] = '.'
+        pic[sy+min_height][sx] = 'X'
 
 for line in pic:
     print(''.join(line))
