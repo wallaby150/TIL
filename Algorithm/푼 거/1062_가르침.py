@@ -14,6 +14,7 @@ elif K == 26:
 
 answer = 0
 words = []
+# 중간에 체크해야 할 알파벳만 추리며 저장
 for _ in range(N):
     tmp = input()
     words.append(set(tmp[4:-4]))
@@ -42,7 +43,7 @@ def dfs(idx, cnt):
     for i in range(idx, 26):
         if not learn[i]:
             learn[i] = True
-            dfs(i, cnt + 1)
+            dfs(i + 1, cnt + 1)
             learn[i] = False
 
 
