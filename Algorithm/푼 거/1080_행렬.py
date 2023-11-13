@@ -20,10 +20,8 @@ for y in range(N-2):
             change(y, x)
             answer += 1
 
-for row_num in range(N):
-    if A[row_num] != B[row_num]:
-        print(-1)
-        break
+if A != B:
+    print(-1)
 else:
     print(answer)
 
