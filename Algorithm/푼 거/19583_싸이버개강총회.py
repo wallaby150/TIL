@@ -1,51 +1,34 @@
 import sys
 input = lambda: sys.stdin.readline().rstrip()
 
-class Node(object):
-    def __init__(self, isEnd):
-        self.isEnd = isEnd
-        self.childNode = {}
+S, E, Q = list(input().split())
+# 시간을 분 단위로 저장
+def toMinutes(t):
+    a, b = map(int, t.split(':'))
+    return a*60 + b
 
-class Trie(object):
-    def __init__(self):
-        self.parent = Node(None)
+S = toMinutes(S)
+E = toMinutes(E)
+Q = toMinutes(Q)
 
-    def insert(self, string):
-        nowNode = self.parent
-        temp_length = 0
-        for char in string:
-            if char not in nowNode.childNode:
-                nowNode.childNode[char] = Node(char)
-            nowNode = nowNode.childNode[char]
-            temp_length += 1
-            if temp_length == len(string):
-                nowNode.isEnd = True
+count = 0
+attendee = {}
+answer = set()
 
-    def search(self, string):
-        nowNode = self.parent
-        temp_length = 0
-        for char in string:
-            if char in nowNode.childNode:
-                nowNode = nowNode.childNode[char]
-                temp_length += 1
-                if temp_length == len(string) and nowNode.isEnd == True:
-                    return True
-            else:
-                return False
-        return False
 
-N, M = map(int, input().split())
-myTrie = Trie()
+while True:
+    try:
+        time, nickname = input().split()
+        time = toMinutes(time)
 
-for _ in range(N):
-    word = input()
-    myTrie.insert(word)
+        if nickname in attendee:
+            if Q >= time >= E:
+                if nickname not in answer:
+                    answer.add(nickname)
+        else:
+            if time <= S:
+                attendee[nickname] = [time]
+    except:
+        break
 
-result = 0
-
-for _ in range(M):
-    word = input()
-    if myTrie.search(word):
-        result += 1
-
-print(result)
+print(len(answer))
