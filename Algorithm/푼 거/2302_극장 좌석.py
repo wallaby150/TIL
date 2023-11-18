@@ -3,28 +3,19 @@ input = lambda: sys.stdin.readline().rstrip()
 
 N = int(input())
 M = int(input())
-vip = set()
-for _ in range(M):
-    vip.add(int(input()))
+vip = list(int(input()) for _ in range(M))
+count = 1
+dp = [1, 1, 2]
+for i in range(3, N+1):
+    dp.append(dp[i-1]+dp[i-2])
 
-count = 0
+if M > 0:
+    tmp = 0
+    for j in range(M):
+        count *= dp[vip[j] - 1 - tmp]
+        tmp = vip[j]
+    count *= dp[N - tmp]
+else:
+    count *= dp[N]
 
-def solve(idx, last):
-    global count
-    if idx == N:
-        count += 1
-        return
-
-    if idx in vip:
-        solve(idx+1, idx)
-
-    else:
-        for i in range(idx-1, idx+2):
-            if i in vip:
-                continue
-
-            elif i != last and i != 0:
-                solve(idx+1, i)
-
-solve(1, -1)
 print(count)
