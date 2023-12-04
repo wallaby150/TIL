@@ -10,6 +10,9 @@ answer = -10000 * 101
 def solve(ny, nx, cnt, now_sum):
     global answer
 
+    if now_sum + (K - cnt + 1) * 10000 <= answer:
+        return
+
     if cnt == K:
         answer = max(now_sum, answer)
         return
@@ -20,14 +23,14 @@ def solve(ny, nx, cnt, now_sum):
                 continue
 
             # 얘의 4분면이 가능한지 확인
-            for ty, tx in ((y-1, x), (y, x-1)):
-                if 0 <= ty and 0 <= tx:
+            for ty, tx in ((y-1, x), (y+1, x), (y, x+1), (y, x-1)):
+                if 0 <= ty < N and 0 <= tx < M:
                     if visited[ty][tx]:
                         break
             else:
                 # 가능하다면
                 visited[y][x] = True
-                solve(y, x + 2, cnt + 1, now_sum + nums[y][x])
+                solve(y, x + 1, cnt + 1, now_sum + nums[y][x])
                 visited[y][x] = False
 
 solve(0, 0, 0, 0)
