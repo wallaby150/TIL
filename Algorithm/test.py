@@ -1,27 +1,29 @@
 import sys
 input = lambda : sys.stdin.readline().rstrip()
 
-# 게임 횟수, 이긴 게임
-X, Y = map(int, input().split())
-Z = int(Y / X * 100)
+N, K = map(int, input().split())
+colors = [[] for _ in range(K)]
+
+for _ in range(N):
+    x, y, c = map(int, input().split())
+    colors[c-1].append((y, x))
+
+answer = 4000001
+tmp = []
+def solve(depth):
+    global answer
+
+    if depth > 1:
 
 
-def solve(x, y, z):
-    if z >= 99:
-        return -1
+    if depth == K:
+        pass
+        return
 
-    start = 1
-    end = x
-
-    while start <= end:
-        mid = (start + end) // 2
-        if int((y + mid) / (x + mid) * 100) >= z:
-            end = mid - 1
-        else:
-            start = mid + 1
-
-    return mid
+    for dot in colors[depth]:
+        tmp.append(dot)
+        solve(depth + 1)
+        tmp.pop()
 
 
-print(solve(X, Y, Z))
-
+solve(0)
