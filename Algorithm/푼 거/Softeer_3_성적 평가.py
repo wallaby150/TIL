@@ -1,6 +1,5 @@
 import sys
-sys.stdin = open("성적 평가.txt")
-input = sys.stdin.readline
+input = lambda : sys.stdin.readline().rstrip()
 
 N = int(input())
 total_scores = [0 for _ in range(N)]
@@ -16,18 +15,15 @@ def sorting(n, scores):
         now = sorted_scores[idx]
         if now != score:
             score_dict[now] = idx+1
-            i = idx
             score = now
-        # else:
-        #     # 전에 놈이랑 등수가 같으면
-        #     score_dict[now] = i
 
     for idx in range(n):
         j = scores[idx]
         total_scores[idx] = total_scores[idx]+j
-        print(score_dict[j], end=" ")
-    else:
-        print()
+        if idx == n - 1:
+            print(score_dict[j])
+        else:
+            print(score_dict[j], end=" ")
 
 
 for _ in range(3):
@@ -35,5 +31,3 @@ for _ in range(3):
     sorting(N, scores_list)
 
 sorting(N, total_scores)
-
-# print(" ".join(map(str, total_scores)))
