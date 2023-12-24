@@ -10,28 +10,21 @@ score_dict = defaultdict(int)
 for score in scores:
     score_dict[score] += 1
 
+for i in range(N-2):
+    l, r = i + 1, N - 1
+    t = -scores[i]
 
-# print(score_dict)
-# print(scores)
-
-l = 0
-while scores[l] <= 0 and l <= N-2:
-    for r in range(N-1, l, -1):
-        # 왼쪽으로 많이 넘어가면
-        if scores[r] < 0:
-            break
-        ln, rn = scores[l], scores[r]
-        gap = scores[l] + scores[r]
-        if -gap == scores[l] and -gap == scores[r]:
-            if -gap in score_dict and score_dict[-gap] >= 3:
-                answer += score_dict[-gap] - 2
-        elif -gap == scores[l] or -gap == scores[r]:
-            if -gap in score_dict and score_dict[-gap] >= 2:
-                answer += score_dict[-gap] - 1
+    while l < r:
+        tmp = scores[l] + scores[r]
+        if tmp < t:
+            l += 1
+        elif tmp > t:
+            r -= 1
         else:
-            if -gap in score_dict:
-                answer += score_dict[-gap]
-    l += 1
+            if scores[l] == scores[r]:
+                answer += r - l
+            else:
+                answer += score_dict[scores[r]]
+            l += 1
 
-
-print(answer // 2)
+print(answer)
