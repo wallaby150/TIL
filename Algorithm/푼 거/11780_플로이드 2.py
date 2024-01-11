@@ -6,7 +6,7 @@ INF = sys.maxsize
 N = int(input())
 # 버스의 개수
 M = int(input())
-dist = [[INF] * (N) for _ in range(N)]
+dist = [[INF] * N for _ in range(N)]
 way = [[[0]] * N for _ in range(N)]
 
 # 초기화
