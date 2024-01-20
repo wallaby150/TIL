@@ -9,17 +9,15 @@ for _ in range(N - 1):
     tree[a].append(b)
     tree[b].append(a)
 
-q = deque([[1, tree[1][:]]])
-visited = [False] * (N + 1)
+q = deque([1])
 answer = [0] * (N + 1)
 
 while q:
-    num, togos = q.popleft()
-    for togo in togos:
-        if not visited[togo]:
-            visited[togo] = True
-            q.append([togo, tree[togo][:]])
+    num = q.popleft()
+    for togo in tree[num]:
+        if not answer[togo]:
             answer[togo] = num
+            q.append(togo)
 
 for a in answer[2:]:
     print(a)
