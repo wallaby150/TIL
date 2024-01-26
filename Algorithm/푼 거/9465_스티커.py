@@ -12,28 +12,30 @@ def solve(idx, score):
         answer = max(score, answer)
         return
 
-    if visited[idx//N][idx%N] == 1:
+    if visited[idx//N][idx % N] == 1:
         solve(idx + 1, score)
         return
 
     if idx >= N:
         new_idx = idx - N
-        tmp = []
+        tmp = [[idx//N, idx % N]]
         for y, x in ((1, new_idx - 1), (0, new_idx), (1, new_idx + 1)):
             if 0 <= x < N:
                 visited[y][x] = 1
                 tmp.append([y, x])
+        visited[idx//N][idx % N] = 2
         solve(idx + 1, score + nums[1][new_idx])
         for ny, nx in tmp:
             visited[ny][nx] = 0
         solve(idx + 1, score)
 
     else:
-        tmp = []
-        for y, x in ((1, idx - 1), (0, idx), (1, idx + 1)):
+        tmp = [[idx//N, idx % N]]
+        for y, x in ((0, idx - 1), (1, idx), (0, idx + 1)):
             if 0 <= x < N:
                 visited[y][x] = 1
                 tmp.append([y, x])
+        visited[idx//N][idx % N] = 2
         solve(idx + 1, score + nums[0][idx])
         for ny, nx in tmp:
             visited[ny][nx] = 0

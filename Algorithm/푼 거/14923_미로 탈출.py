@@ -28,6 +28,7 @@ while q:
             if grid[ty][tx] == 0:
                 # 안 갔으면
                 if visited[ty][tx][did] == high:
+                    # 능력을 썼고, 안 쓴 값이 쓴 값보다 작으면 고려 x
                     if did == 1 and visited[ty][tx][0] <= visited[ny][nx][1]:
                         continue
                     visited[ty][tx][did] = visited[ny][nx][did] + 1
@@ -35,17 +36,11 @@ while q:
 
             # 벽이 막혀있는데 아직 능력 안 썼으면
             elif did == 0:
-                tty, ttx = ty + [-1, 0, 1, 0][d], tx + [0, 1, 0, -1][d]
-                # 범위 안이고
-                if 0 <= ttx < W and 0 <= tty < H:
-                    # 벽이 아니고
-                    if grid[tty][ttx] == 0:
-                        # 안 가봤고
-                        if visited[ty][tx][1] == high:
-                            # 능력을 쓴 것보다 빠르면
-                            if visited[ny][nx][0] + 2 < visited[tty][ttx][0]:
-                                visited[tty][ttx][1] = visited[ny][nx][0] + 2
-                                q.append([tty, ttx, 1])
+                # 안 가봤으면
+                if visited[ty][tx][1] == high:
+                    # 능력을 썼고, 안 쓴 값이 쓴 값보다 작으면 고려 x
+                    visited[ty][tx][1] = visited[ny][nx][did] + 1
+                    q.append([ty, tx, 1])
 
 
 a, b = visited[ey-1][ex-1]
