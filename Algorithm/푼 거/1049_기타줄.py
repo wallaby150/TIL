@@ -13,8 +13,7 @@ if p >= e * 6:
     print(e * N)
 else:
     if p > e * (N % 6):
-        tmp = p * (N // 6)
-        tmp += e * (N % 6)
+        tmp = p * (N // 6) + e * (N % 6)
     else:
         tmp = p * (N // 6 + bool(N % 6))
     print(tmp)
