@@ -8,7 +8,7 @@ x = list(map(int, input().split()))
 
 d = {}
 for i in range(N):
-    d[card[i]] = -1
+    d[card[i]] = True
 
 for i in x:
     if i in d:
