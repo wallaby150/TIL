@@ -7,7 +7,6 @@ K = int(input())
 ans = 0
 
 
-
 # 어디 인덱스를 확인하고 있는지, 가능한 수가 뭐가 남았는지, 몇 번 바꿨는지
 def solve(idx, p, cnt):
     global ans
