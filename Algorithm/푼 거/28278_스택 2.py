@@ -1,10 +1,10 @@
 import sys
-input = sys.stdin.readline
+input = lambda : sys.stdin.readline().rstrip()
 
-n = int(input())
+N = int(input())
 stack = []
 
-for _ in range(n):
+for _ in range(N):
     cmd = list(map(int, input().split()))
     if cmd[0] == 1:
         stack.append(cmd[1])
