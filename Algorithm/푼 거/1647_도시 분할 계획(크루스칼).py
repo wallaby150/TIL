@@ -25,6 +25,8 @@ def union(x, y):
     else:
         parents[x] = y
 
+
+last = 0
 for connect in connects:
     a, b, c = connect
     if find(a) != find(b):
