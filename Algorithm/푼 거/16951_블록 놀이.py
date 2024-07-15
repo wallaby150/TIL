@@ -2,14 +2,14 @@ import sys
 input = lambda: sys.stdin.readline().rstrip()
 
 
-def check(i):
+def check(x):
     cnt = 0
     for j in range(N):
-        if j < i:
-            if nums[j] != (nums[i] - (i - j) * K):
+        if j < x:
+            if nums[j] != nums[x] - (x - j) * K:
                 cnt += 1
-        elif j > i:
-            if nums[j] != (nums[i] + (j - i) * K):
+        elif j > x:
+            if nums[j] != nums[x] + (j - x) * K:
                 cnt += 1
     return cnt
 
