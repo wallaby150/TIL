@@ -1,5 +1,4 @@
 import sys
-sys.stdin = open("input.txt")
 input = lambda: sys.stdin.readline().rstrip()
 
 N, M, T = map(int, input().split())
