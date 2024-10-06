@@ -16,18 +16,21 @@ def find_winner():
                     count = 1
                     ny, nx = y + dy, x + dx
 
-                    # Forward direction
+                    # 진행 방향대로 확인
                     while is_valid(ny, nx) and grid[ny][nx] == color:
                         count += 1
                         ny += dy
                         nx += dx
 
-                    # Backward direction
+                        if count > 5:
+                            break
+
+                    # 역방향도 확인
                     by, bx = y - dy, x - dx
                     if is_valid(by, bx) and grid[by][bx] == color:
                         continue
 
-                    # Check if exactly five in a row
+                    # 오목인지 확인
                     if count == 5:
                         return color, y + 1, x + 1
 

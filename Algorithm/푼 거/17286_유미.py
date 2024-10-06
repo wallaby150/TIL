@@ -9,9 +9,7 @@ def distance(p1, p2):
 
 
 yumi = list(map(int, input().split()))
-
 people = [list(map(int, input().split())) for _ in range(3)]
-
 min_distance = float('inf')
 
 for path in permutations(people):
