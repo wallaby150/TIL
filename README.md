@@ -19,7 +19,7 @@
 ## 언어와 툴
 - Python
 - JavaScript
-- IDE: Pycharm
+- IDE: Pycharm 
 
 <br>
 
