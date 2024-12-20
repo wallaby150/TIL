@@ -1,12 +1,18 @@
 import sys
 
-def find_duplicate():
-    n = int(input())
-    numbers = map(int, sys.stdin.read().split())
+N = int(input())
+target = sum(range(1, N))
+nums = sys.stdin.readline()
+now = 0
+tmp = ""
 
-    expected_sum = (n - 1) * n // 2
-    actual_sum = sum(numbers)
+for num in nums:
+    if num.isdigit():
+        tmp += num
+    else:
+        now += int(tmp)
+        tmp = ""
 
-    return actual_sum - expected_sum
-
-print(find_duplicate())
+if tmp:
+    now += int(tmp)
+print(now - target)
