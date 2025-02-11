@@ -1,1 +1,2 @@
-print(int(input() ** 0.5))
+n = int(input())
+print(int(n ** (1 / 2)))
