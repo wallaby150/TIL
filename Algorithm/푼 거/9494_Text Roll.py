@@ -18,9 +18,6 @@ while True:
             if line[j] == ' ':
                 idx.append(j)
 
-        if i == 0:
-            roll = idx[0]
-
         for k in range(len(idx)):
             if idx[k] >= roll:
                 roll = idx[k]
